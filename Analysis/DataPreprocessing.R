@@ -91,6 +91,11 @@ mean_mc <- mean(mc)
 sd_mc <-sd(mc)
 df_total <- df_total[df_total$mc >= mean_mc - sd_mc* 1.5,]
 
+# filter participants who did not report a choice of binary male or female 
+# gender (8 participants; as they were too few to be accounted for in the 
+# regression models)
+df_total <-  df_total[df_total$gender == 'Femenino' | df_total$gender == 'Masculino',]
+
 ### Save the df_total, now df_total_filtered
 filepath <- root$find_file("Data/df_total_filtered.Rda")
 save(df_total,file = filepath)

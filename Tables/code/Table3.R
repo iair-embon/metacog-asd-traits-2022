@@ -23,13 +23,13 @@ table3 <- a %>%
                estimate_fun =  ~style_number (.x, digits = 3),
                label = list(
                  "(Intercept)" ~ "Intercept",
-                 "aq_social.norm" ~ "Social Skill.norm",
-                 "aq_at_sw.norm" ~ "Attention Switching.norm",
-                 "aq_at_de.norm" ~ "Attention to Detail.norm",
-                 "aq_com.norm" ~ "Communication.norm",
-                 "aq_im.norm" ~ "Imagination.norm",
-                 "Im" ~ "Gender[m]",
-                 "edad.norm" ~ "Age.norm")
+                 "AQ_social.norm" ~ "Social Skill.norm",
+                 "AQ_AttentionSwitch.norm" ~ "Attention Switching.norm",
+                 "AQ_AttentionDetail.norm" ~ "Attention to Detail.norm",
+                 "AQ_communication.norm" ~ "Communication.norm",
+                 "AQ_imagination.norm" ~ "Imagination.norm",
+                 "gender" ~ "Gender[m]",
+                 "age.norm" ~ "Age.norm")
                ) %>%
   modify_header(label ~ "") %>%
   modify_column_unhide(column = std.error) %>%

@@ -23,11 +23,11 @@ table1 <- a %>%
                estimate_fun =  ~style_number (.x, digits = 3),
                label = list(
                  "(Intercept)" ~ "Intercept",
-                 "aq.norm" ~ "AQ.norm",
-                 "Im" ~ "Gender[m]",
-                 "edad.norm" ~ "Age.norm",
-                 "aq.norm:Im" ~ "AQ.norm:Gender[m]",
-                 "aq.norm:edad.norm" ~ "AQ.norm:Age.norm")
+                 "AQ_test.norm" ~ "AQ.norm",
+                 "gender" ~ "Gender[m]",
+                 "age.norm" ~ "Age.norm",
+                 "AQ_test.norm:gender" ~ "AQ.norm:Gender[m]",
+                 "AQ_test.norm:age.norm" ~ "AQ.norm:Age.norm")
                ) %>%
   modify_header(label ~ "") %>%
   modify_column_unhide(column = std.error) %>%

@@ -1,5 +1,5 @@
 ##########################################
-### Mixed Logistic Regression Analysis ### TAB 2 ## CORREGIR PARA MODELO MIXTO
+### Mixed Logistic Regression Analysis ### TAB 2
 ##########################################
 
 ###############
@@ -26,12 +26,12 @@ table2 <- a_log %>%
     label = list(
       "(Intercept)" ~ "Intercept",
       "confidence_key.norm" ~ "Confidence.norm",
-      "confidence_key.norm:AQ.norm" ~ "AQ.norm:Confidence.norm",
-      "confidence_key.norm:genero" ~ "Gender[m]:Confidence.norm",
-      "confidence_key.norm:edad.norm" ~ "Age.norm:Confidence.norm",
-      "confidence_key.norm:AQ.norm:genero" ~ "AQ.norm:Gender[m]:Confidence.norm",
-      "confidence_key.norm:AQ.norm:edad.norm" ~ "AQ.norm:Age.norm:Confidence.norm",
-      "sujetos.sd__(Intercept)" ~ "Subjects SE(Intercept)")) %>%
+      "confidence_key.norm:AQ_test.norm" ~ "AQ.norm:Confidence.norm",
+      "confidence_key.norm:gender" ~ "Gender[m]:Confidence.norm",
+      "confidence_key.norm:age.norm" ~ "Age.norm:Confidence.norm",
+      "confidence_key.norm:AQ_test.norm:gender" ~ "AQ.norm:Gender[m]:Confidence.norm",
+      "confidence_key.norm:AQ_test.norm:age.norm" ~ "AQ.norm:Age.norm:Confidence.norm",
+      "Participant.sd__(Intercept)" ~ "Subjects SE(Intercept)")) %>%
   modify_header(label ~ "") %>%
   modify_column_unhide(column = std.error) %>%
   add_global_p() %>%
