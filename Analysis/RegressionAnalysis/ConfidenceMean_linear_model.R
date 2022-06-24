@@ -26,7 +26,7 @@ a=lm(m_c.norm ~ AQ_test.norm +
        gender +
        age.norm +
        AQ_test.norm: gender +
-       aAQ_test.norm:age.norm,
+       AQ_test.norm:age.norm,
      data = d) 
 summary(a)
 
