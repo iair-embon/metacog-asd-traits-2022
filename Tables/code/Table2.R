@@ -2,10 +2,6 @@
 ### Mixed Logistic Regression Analysis ### TAB 2
 ##########################################
 
-###############
-### library ###
-###############
-
 require(gtsummary)
 require(dplyr)
 require(broom.mixed)

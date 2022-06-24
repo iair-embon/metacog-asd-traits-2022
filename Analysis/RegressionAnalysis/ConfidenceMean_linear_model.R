@@ -21,7 +21,7 @@ d[d == "Masculino"] <- "1"
 d[d == "Femenino"] <- "0"
 d$m_c.norm <- (d$m_c - mean(d$m_c))/ sd(d$m_c)
 
-# corro el modelo
+# model
 a=lm(m_c.norm ~ AQ_test.norm +
        gender +
        age.norm +

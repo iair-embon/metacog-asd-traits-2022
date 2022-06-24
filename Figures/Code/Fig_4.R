@@ -13,7 +13,6 @@ filepath <- root$find_file("Data/Regression_Results/AUROC2_AQ_linear_model.RData
 load(file= filepath)
 
 ### FIG 4a
-
 plot_summs(a, coefs = c('AQ' = 'AQ_test.norm',
                         'Gender[m]'='gender',
                         'Age' = 'age.norm',

@@ -27,8 +27,8 @@ df_total <- df_total[df_total$PC > 0.60,]
 
 #  having pressed the same confidence key more than 85% of trials
 source(root$find_file("Analysis/AuxiliaryFunctions/discard_by_x_same_confidence_new.R"))
-sujetos_a_descartar <- discard_by_x_same_confidence_new(85,df_total)  
-df_total <- df_total[! df_total$Participant %in% sujetos_a_descartar,]
+discard_participant <- discard_by_x_same_confidence_new(85,df_total)  
+df_total <- df_total[! df_total$Participant %in% discard_participant,]
 
 # Filter by reaction times
 df_total <- df_total[df_total$TimeDiscTrial <= 5000,]
@@ -40,19 +40,19 @@ df_total <- df_total[df_total$trial > 20,]
 
 # Filter by trails needed to calculate AUROC2
 # discarding because very few trials
-cant_trials_por_sujeto <- rep(NaN, length(unique(df_total$Participant)))
+TrialByParticipant <- rep(NaN, length(unique(df_total$Participant)))
 existing_subject <- unique(df_total$Participant)
 
-for (i in 1:length(cant_trials_por_sujeto)) {
-  cant_trials_por_sujeto[i] <- nrow(df_total[df_total$Participant == existing_subject[i],])
+for (i in 1:length(TrialByParticipant)) {
+  TrialByParticipant[i] <- nrow(df_total[df_total$Participant == existing_subject[i],])
 }
 
 # I see who are the ones who have fewer trials than X
-indices_cant_trials <- which(cant_trials_por_sujeto < 90)
-subj_pocos_trials<- existing_subject[indices_cant_trials]
+IndexTrial <- which(TrialByParticipant < 90)
+FewTrialsParticipant<- existing_subject[IndexTrial]
 
 # I discard them
-df_total <- df_total[! df_total$Participant %in% subj_pocos_trials,]
+df_total <- df_total[! df_total$Participant %in% FewTrialsParticipant,]
 
 ### AUROC2
 # get metacognitive sensivity
@@ -72,19 +72,15 @@ for (i in 1:Nsuj){
 
 ## adding column mc to df_total
 
-todos_sujetos_mc <- c()
-
+All_participants_mc <- c()
 for (i in 1:length(ExistingSubjects)) {
-  
-  sujeto_df_exp <- df_total[df_total$Participant == ExistingSubjects[i],]
-  cant_trials <- nrow(sujeto_df_exp)
-  
-  sujeto_mc <-rep(mc[i],cant_trials)
-  
-  todos_sujetos_mc <- c(todos_sujetos_mc,sujeto_mc)
+  participant_df_exp <- df_total[df_total$Participant == ExistingSubjects[i],]
+  trials <- nrow(participant_df_exp)
+  participant_mc <-rep(mc[i],trials)
+  All_participants_mc <- c(All_participants_mc,participant_mc)
 }
 
-df_total$mc <- todos_sujetos_mc
+df_total$mc <- All_participants_mc
 
 # filter those who have an AUROC2 less than 1.5 standard deviations from the mean
 mean_mc <- mean(mc)

@@ -21,9 +21,7 @@ d[d == "Masculino"] <- "1"
 d[d == "Femenino"] <- "0"
 d$gender <- as.integer(d$gender)
 
-############ metacog y AQ
-
-# corro el modelo
+# model 
 a=lm(mc ~ AQ_test.norm +
        gender +
        age.norm +

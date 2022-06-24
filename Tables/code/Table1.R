@@ -2,10 +2,6 @@
 ### Linear Regression Analysis AUROC2 ### TAB 1
 #########################################
 
-###############
-### library ###
-###############
-
 require(gtsummary)
 require(dplyr)
 
@@ -14,7 +10,6 @@ root <- rprojroot::is_rstudio_project
 basename(getwd())               
 filepath <- root$find_file("Data/Regression_Results/AUROC2_AQ_linear_model.RData")
 load(file= filepath)
-
 
 table1 <- a %>%
   tbl_regression(

@@ -24,20 +24,20 @@ discard_by_x_same_confidence_new <- function(percent,df_total){
   existing_subject <- unique(df_total$Participant)
   
   filtro <- round((percent*130)/100)
-  sujetos_a_descartar <- c()
+  discard_participant <- c()
   j <-1
   for (i in 1:nrow(df_conf)) {
-    se_descarta <- FALSE
+    discard_p <- FALSE
     df_subj <- df_conf[df_conf$Participant == existing_subject[i],]
-    if(df_subj$Conf1 > filtro){se_descarta <- TRUE}
-    if(df_subj$Conf2 > filtro){se_descarta <- TRUE}
-    if(df_subj$Conf3 > filtro){se_descarta <- TRUE}
-    if(df_subj$Conf4 > filtro){se_descarta <- TRUE}
+    if(df_subj$Conf1 > filtro){discard_p <- TRUE}
+    if(df_subj$Conf2 > filtro){discard_p <- TRUE}
+    if(df_subj$Conf3 > filtro){discard_p <- TRUE}
+    if(df_subj$Conf4 > filtro){discard_p <- TRUE}
     
-    if(se_descarta == TRUE){
-      sujetos_a_descartar <- c(sujetos_a_descartar, existing_subject[i])
+    if(discard_p == TRUE){
+      discard_participant <- c(discard_participant, existing_subject[i])
       j <- j+1}
   }
   
-  return(sujetos_a_descartar)
+  return(discard_participant)
 }

@@ -2,10 +2,6 @@
 ### Regression model confidence ### TAB 4
 ###################################
 
-###############
-### library ###
-###############
-
 require(gtsummary)
 require(dplyr)
 
@@ -14,7 +10,6 @@ root <- rprojroot::is_rstudio_project
 basename(getwd())               
 filepath <- root$find_file("Data/Regression_Results/ConfidenceMean_AQ_linear_model.RData")
 load(file= filepath)
-
 
 table4 <- a %>%
   tbl_regression(

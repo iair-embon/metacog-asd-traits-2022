@@ -2,10 +2,6 @@
 ### Linear Regression Analysis AQ Subscales ### TAB 3
 ###############################################
 
-###############
-### library ###
-###############
-
 require(gtsummary)
 require(dplyr)
 
@@ -14,7 +10,6 @@ root <- rprojroot::is_rstudio_project
 basename(getwd())               
 filepath <- root$find_file("Data/Regression_Results/AQ_subscales_linear_model.RData")
 load(file= filepath)
-
 
 table3 <- a %>%
   tbl_regression(
