@@ -7,7 +7,7 @@
    viewBox="0 0 210 297"
    version="1.1"
    id="svg425"
-   inkscape:export-filename="Fig1.png"
+   inkscape:export-filename="Figure1.tiff"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    inkscape:version="1.2 (1:1.2+202206011327+fc4e4096c5)"
@@ -28,13 +28,13 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.55181709"
-     inkscape:cx="8.1548762"
-     inkscape:cy="689.54009"
-     inkscape:window-width="1848"
+     inkscape:cx="4.5304867"
+     inkscape:cy="693.16447"
+     inkscape:window-width="924"
      inkscape:window-height="1016"
-     inkscape:window-x="72"
+     inkscape:window-x="996"
      inkscape:window-y="27"
-     inkscape:window-maximized="1"
+     inkscape:window-maximized="0"
      inkscape:current-layer="layer1" />
   <defs
      id="defs422">
@@ -137,7 +137,7 @@
          transform="matrix(0.02696572,0,0,0.02681731,-18.621052,17.542702)"><tspan
            x="2266.082"
            y="875.78158"
-           id="tspan1465">500ms</tspan></text>
+           id="tspan361">500ms</tspan></text>
       <text
          xml:space="preserve"
          id="text11191-8"
@@ -145,7 +145,7 @@
          transform="matrix(0.02696572,0,0,0.02681731,-12.955575,38.258159)"><tspan
            x="2266.082"
            y="875.78158"
-           id="tspan1467">500ms</tspan></text>
+           id="tspan363">500ms</tspan></text>
       <text
          xml:space="preserve"
          id="text78869"
@@ -153,10 +153,10 @@
          transform="matrix(0.02696572,0,0,0.02681731,-20.303177,24.627849)"><tspan
            x="2757.957"
            y="1956.7009"
-           id="tspan1469">Until </tspan><tspan
+           id="tspan365">Until </tspan><tspan
            x="2757.957"
            y="2123.3671"
-           id="tspan1471">response</tspan></text>
+           id="tspan367">response</tspan></text>
       <text
          xml:space="preserve"
          id="text78869-4"
@@ -164,10 +164,10 @@
          transform="matrix(0.02696572,0,0,0.02681731,-14.839261,44.602429)"><tspan
            x="2757.957"
            y="1956.7009"
-           id="tspan1473">Until </tspan><tspan
+           id="tspan369">Until </tspan><tspan
            x="2757.957"
            y="2123.3671"
-           id="tspan1475">response</tspan></text>
+           id="tspan371">response</tspan></text>
       <ellipse
          style="fill:none;fill-rule:evenodd;stroke:#f3f3f3;stroke-width:0.0942518;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
          id="path13418"

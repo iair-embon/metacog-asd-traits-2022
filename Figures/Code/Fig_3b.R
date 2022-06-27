@@ -56,7 +56,7 @@ gM <- ggplot(d, aes(x = AQ_test))+
         axis.title.x = element_text(size = 30))
 
 g <- plot_grid(gF, gM, 
-               labels = c('B', ''),
+               labels = c('', ''),
                label_size = 24)
 
 
