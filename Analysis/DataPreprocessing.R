@@ -26,7 +26,7 @@ df_total <- df_total[df_total$Problems == 'ok',]
 df_total <- df_total[df_total$PC > 0.60,]
 
 #  having pressed the same confidence key more than 85% of trials
-source(root$find_file("Analysis/AuxiliaryFunctions/discard_by_x_same_confidence_new.R"))
+source(root$find_file("Analysis/AuxiliaryFunctions/discard_by_x_same_confidence.R"))
 discard_participant <- discard_by_x_same_confidence_new(85,df_total)  
 df_total <- df_total[! df_total$Participant %in% discard_participant,]
 
