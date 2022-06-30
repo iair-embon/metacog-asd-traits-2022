@@ -44,11 +44,19 @@ load(file= filepath)
 source(root$find_file("Analysis/AuxiliaryFunctions/DataFrame_subset.R"))
 d <- DataFrame_subset(df_total)
 
+# convert the normalized AQ scores to the original scores
+intercept <- coefficients(a)[[1]]
+slope <- coefficients(a)[[2]]
+
+converted_intercept <- intercept-slope*mean(d$AQ_test)/sd(d$AQ_test)
+converted_slope <- slope/sd(d$AQ_test)
+
+
 ## regression line and scatter plot
 ggplot(d, aes(x=AQ_test, y=mc)) + 
   geom_point()+
-  geom_abline(intercept = unname(coefficients(a)[1]), 
-              slope = unname(coefficients(a)[2]))+
+  geom_abline(intercept = converted_intercept, 
+              slope = converted_slope)+
   ylab("AUROC2") +
   xlab("AQ") +
   theme(axis.line = element_line(colour = "black"),
