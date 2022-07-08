@@ -15,7 +15,6 @@ source(root$find_file("Analysis/AuxiliaryFunctions/DataFrame_subset.R"))
 d <- DataFrame_subset(df_total)
 
 ### preprocessing
-d$mc.norm <- (d$mc - mean(d$mc))/ sd(d$mc)
 d$age.norm <- (d$age - mean(d$age))/ sd(d$age)
 d[d == "Masculino"] <- "1"
 d[d == "Femenino"] <- "0"

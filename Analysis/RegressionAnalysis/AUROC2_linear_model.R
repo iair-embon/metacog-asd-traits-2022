@@ -15,7 +15,6 @@ d <- DataFrame_subset(df_total)
 
 ### preprocessing
 d$AQ_test.norm <- (d$AQ_test - mean(d$AQ_test))/ sd(d$AQ_test)
-d$mc.norm <- (d$mc - mean(d$mc))/ sd(d$mc)
 d$age.norm <- (d$age - mean(d$age))/ sd(d$age)
 d[d == "Masculino"] <- "1"
 d[d == "Femenino"] <- "0"
