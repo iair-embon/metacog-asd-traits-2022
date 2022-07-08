@@ -1,1 +1,0 @@
-This is the experiment code, ready to be imported into JATOS and run.
