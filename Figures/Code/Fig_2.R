@@ -115,12 +115,81 @@ pD <- ~{
   abline(0, 1, lwd = 2, lty = 3)
 }
 
+#### E: Logistic regression for the low metacognition hypothetical participant ####
+
+d.low.metacog.df <- as.data.frame(d.low.metacog) %>%
+  mutate(Correct = c(0,1)) %>%
+  pivot_longer(c(Low,V2,V3,High)) %>%
+  mutate(value.mod = value- mean(value) + 0.5) %>%
+  filter(Correct == 1) %>%
+  mutate(name = 1:4)
+
+pE <- ggplot(d.low.metacog.df, aes(name, value.mod)) +
+  geom_point()+
+  geom_smooth(method = "glm", 
+              method.args = list(family = "binomial"), 
+              se = FALSE) +
+  scale_y_continuous("p(correct)" ,
+                     breaks =  round(seq(0,1, length.out = 4),
+                                    digits = 2),
+                     labels = round(seq(0,1, length.out = 4),
+                                    digits = 2),
+                    limits = c(0,1))+
+  xlab("confidence") +
+  expand_limits(y = 0)+ 
+  theme(axis.line = element_line(colour = "black"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank(),
+        plot.margin = margin(1, 1,1, 1, "cm"),
+        panel.background = element_blank(),
+        axis.title.x=element_text(size = 15),
+        axis.text.x=element_text(size = 15),
+        axis.text.y = element_text(size = 15),
+        axis.title.y = element_text(size = 15))
+
+#### F: Logistic regression for the high metacognition hypothetical participant ####
+
+d.high.metacog.df <- as.data.frame(d.high.metacog) %>%
+  mutate(Correct = c(0,1)) %>%
+  pivot_longer(c(Low,V2,V3,High)) %>%
+  mutate(value.mod = value + min(value),
+         value.mod = value.mod/ max(value.mod)) %>%
+  filter(Correct == 1) %>%
+  mutate(name = 1:4)
+
+pF <- ggplot(d.high.metacog.df, aes(name, value.mod)) +
+  geom_point()+
+  geom_smooth(method = "glm", 
+              method.args = list(family = "binomial"), 
+              se = FALSE) +
+  scale_y_continuous("p(correct)" ,
+                     breaks =  round(seq(0,1, length.out = 4),
+                                     digits = 2),
+                     labels = round(seq(0,1, length.out = 4),
+                                    digits = 2),
+                     limits = c(0,1))+
+  xlab("confidence") +
+  expand_limits(y = 0)+ 
+  theme(axis.line = element_line(colour = "black"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank(),
+        plot.margin = margin(1, 1,1, 1, "cm"),
+        panel.background = element_blank(),
+        axis.title.x=element_text(size = 15),
+        axis.text.x=element_text(size = 15),
+        axis.text.y = element_text(size = 15),
+        axis.title.y = element_text(size = 15))
+
+  
+
 #### Grid plot ####
 
-g <- plot_grid(pA, pC, pB, pD, 
-          labels = c('A', 'C', 'B', 'D'),
+g <- plot_grid(pA, pC, pE, pB, pD, pF, 
+          labels = c('A', 'C', 'E', 'B', 'D', 'F'),
           label_size = 24)
 
 
-ggsave("Figures/Figuras_en_R/Figures/2.png", g,
-       width = 6, height = 8, bg = "white")
+ggsave("Figures/Figures/2.png", g,
+       width = 10, height = 8, bg = "white")
