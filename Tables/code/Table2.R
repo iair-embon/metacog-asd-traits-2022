@@ -22,11 +22,11 @@ table2 <- a_log %>%
     label = list(
       "(Intercept)" ~ "Intercept",
       "confidence_key.norm" ~ "Confidence.norm",
-      "confidence_key.norm:AQ_test.norm" ~ "AQ.norm:Confidence.norm",
+      "confidence_key.norm:AQ_test.std" ~ "AQ.std:Confidence.norm",
       "confidence_key.norm:gender" ~ "Gender[m]:Confidence.norm",
-      "confidence_key.norm:age.norm" ~ "Age.norm:Confidence.norm",
-      "confidence_key.norm:AQ_test.norm:gender" ~ "AQ.norm:Gender[m]:Confidence.norm",
-      "confidence_key.norm:AQ_test.norm:age.norm" ~ "AQ.norm:Age.norm:Confidence.norm",
+      "confidence_key.norm:age.std" ~ "Age.std:Confidence.norm",
+      "confidence_key.norm:AQ_test.std:gender" ~ "AQ.std:Gender[m]:Confidence.norm",
+      "confidence_key.norm:AQ_test.std:age.std" ~ "AQ.std:Age.std:Confidence.norm",
       "Participant.sd__(Intercept)" ~ "Subjects SE(Intercept)")) %>%
   modify_header(label ~ "") %>%
   modify_column_unhide(column = std.error) %>%
