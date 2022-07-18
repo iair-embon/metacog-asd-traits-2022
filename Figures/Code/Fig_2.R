@@ -120,54 +120,16 @@ pD <- ~{
 d.low.metacog.df <- as.data.frame(d.low.metacog) %>%
   mutate(Correct = c(0,1)) %>%
   pivot_longer(c(Low,V2,V3,High)) %>%
-  mutate(value.mod = value- mean(value) + 0.5) %>%
-  filter(Correct == 1) %>%
-  mutate(name = 1:4)
+  mutate(confidence = rep(c(1,2,3,4),2)) %>%
+  slice_sample(n = 130, weight_by = value, replace = T) 
 
-pE <- ggplot(d.low.metacog.df, aes(name, value.mod)) +
-  geom_point()+
+p_low <- ggplot(d.low.metacog.df, aes(confidence,Correct)) +
   geom_smooth(method = "glm", 
               method.args = list(family = "binomial"), 
-              se = FALSE) +
+              se = FALSE, color = "black") +
   scale_y_continuous("p(correct)" ,
-                     breaks =  round(seq(0,1, length.out = 4),
-                                    digits = 2),
-                     labels = round(seq(0,1, length.out = 4),
-                                    digits = 2),
-                    limits = c(0,1))+
-  xlab("confidence") +
-  expand_limits(y = 0)+ 
-  theme(axis.line = element_line(colour = "black"),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_blank(),
-        plot.margin = margin(1, 1,1, 1, "cm"),
-        panel.background = element_blank(),
-        axis.title.x=element_text(size = 15),
-        axis.text.x=element_text(size = 15),
-        axis.text.y = element_text(size = 15),
-        axis.title.y = element_text(size = 15))
-
-#### F: Logistic regression for the high metacognition hypothetical participant ####
-
-d.high.metacog.df <- as.data.frame(d.high.metacog) %>%
-  mutate(Correct = c(0,1)) %>%
-  pivot_longer(c(Low,V2,V3,High)) %>%
-  mutate(value.mod = value + min(value),
-         value.mod = value.mod/ max(value.mod)) %>%
-  filter(Correct == 1) %>%
-  mutate(name = 1:4)
-
-pF <- ggplot(d.high.metacog.df, aes(name, value.mod)) +
-  geom_point()+
-  geom_smooth(method = "glm", 
-              method.args = list(family = "binomial"), 
-              se = FALSE) +
-  scale_y_continuous("p(correct)" ,
-                     breaks =  round(seq(0,1, length.out = 4),
-                                     digits = 2),
-                     labels = round(seq(0,1, length.out = 4),
-                                    digits = 2),
+                     breaks = seq(0,1, length.out = 4),
+                     labels = round(seq(0.5,1, length.out = 4), digits = 2),
                      limits = c(0,1))+
   xlab("confidence") +
   expand_limits(y = 0)+ 
@@ -182,11 +144,42 @@ pF <- ggplot(d.high.metacog.df, aes(name, value.mod)) +
         axis.text.y = element_text(size = 15),
         axis.title.y = element_text(size = 15))
 
-  
+
+#### F: Logistic regression for the high metacognition hypothetical participant ####
+
+d.high.metacog.df <- as.data.frame(d.high.metacog) %>%
+  mutate(Correct = c(0,1)) %>%
+  pivot_longer(c(Low,V2,V3,High)) %>%
+  mutate(confidence = rep(c(1,2,3,4),2)) %>%
+  slice_sample(n = 130, weight_by = value, replace = T) 
+
+p_high <- ggplot(d.high.metacog.df, aes(confidence,Correct)) +
+  geom_smooth(method = "glm", 
+              method.args = list(family = "binomial"), 
+              se = FALSE, color = "black") +
+  scale_y_continuous("p(correct)" ,
+                     breaks = seq(0,1, length.out = 4),
+                     labels = round(seq(0.5,1, length.out = 4), digits = 2),
+                     limits = c(0,1))+
+  xlab("confidence") +
+  expand_limits(y = 0)+ 
+  theme(axis.line = element_line(colour = "black"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank(),
+        plot.margin = margin(1, 1,1, 1, "cm"),
+        panel.background = element_blank(),
+        axis.title.x=element_text(size = 15),
+        axis.text.x=element_text(size = 15),
+        axis.text.y = element_text(size = 15),
+        axis.title.y = element_text(size = 15))
+
+
+
 
 #### Grid plot ####
 
-g <- plot_grid(pA, pC, pE, pB, pD, pF, 
+g <- plot_grid(pA, pC, p_low, pB, pD, p_high, 
           labels = c('A', 'C', 'E', 'B', 'D', 'F'),
           label_size = 24)
 
