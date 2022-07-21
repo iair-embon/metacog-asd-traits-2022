@@ -117,64 +117,32 @@ pD <- ~{
 
 #### E: Logistic regression for the low metacognition hypothetical participant ####
 
-d.low.metacog.df <- as.data.frame(d.low.metacog) %>%
-  mutate(Correct = c(0,1)) %>%
-  pivot_longer(c(Low,V2,V3,High)) %>%
-  mutate(confidence = rep(c(1,2,3,4),2)) %>%
-  slice_sample(n = 130, weight_by = value, replace = T) 
+conf = seq(0,3,0.1)
 
-p_low <- ggplot(d.low.metacog.df, aes(confidence,Correct)) +
-  geom_smooth(method = "glm", 
-              method.args = list(family = "binomial"), 
-              se = FALSE, color = "black") +
-  scale_y_continuous("p(correct)" ,
-                     breaks = seq(0,1, length.out = 4),
-                     labels = round(seq(0.5,1, length.out = 4), digits = 2),
-                     limits = c(0,1))+
-  xlab("confidence") +
-  expand_limits(y = 0)+ 
-  theme(axis.line = element_line(colour = "black"),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_blank(),
-        plot.margin = margin(1, 1,1, 1, "cm"),
-        panel.background = element_blank(),
-        axis.title.x=element_text(size = 15),
-        axis.text.x=element_text(size = 15),
-        axis.text.y = element_text(size = 15),
-        axis.title.y = element_text(size = 15))
+alfa.l <- 0.80
+beta.l <- 0.1
 
+p.l    <- 1 / (1+exp(-(alfa.l+beta.l*conf)))
 
+p_low <-~{
+  plot(conf+1,p.l, ylim = c(0.4,1), type="l",
+       lwd = 2,
+       xlab = "confidence",
+       ylab = "p(correct)")
+}
 #### F: Logistic regression for the high metacognition hypothetical participant ####
 
-d.high.metacog.df <- as.data.frame(d.high.metacog) %>%
-  mutate(Correct = c(0,1)) %>%
-  pivot_longer(c(Low,V2,V3,High)) %>%
-  mutate(confidence = rep(c(1,2,3,4),2)) %>%
-  slice_sample(n = 130, weight_by = value, replace = T) 
+alfa.h = 0
+beta.h = 1
 
-p_high <- ggplot(d.high.metacog.df, aes(confidence,Correct)) +
-  geom_smooth(method = "glm", 
-              method.args = list(family = "binomial"), 
-              se = FALSE, color = "black") +
-  scale_y_continuous("p(correct)" ,
-                     breaks = seq(0,1, length.out = 4),
-                     labels = round(seq(0.5,1, length.out = 4), digits = 2),
-                     limits = c(0,1))+
-  xlab("confidence") +
-  expand_limits(y = 0)+ 
-  theme(axis.line = element_line(colour = "black"),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_blank(),
-        plot.margin = margin(1, 1,1, 1, "cm"),
-        panel.background = element_blank(),
-        axis.title.x=element_text(size = 15),
-        axis.text.x=element_text(size = 15),
-        axis.text.y = element_text(size = 15),
-        axis.title.y = element_text(size = 15))
+p.h    = 1 / (1+exp(-(alfa.h+beta.h*conf)))
 
-
+p_high <-~{
+  plot(conf+1,p.h, ylim = c(0.4,1), type="l",
+       lwd = 2,
+       xlab = "confidence",
+       ylab = "p(correct)")
+}
 
 
 #### Grid plot ####
