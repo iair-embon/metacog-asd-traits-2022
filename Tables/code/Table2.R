@@ -34,4 +34,4 @@ table2 <- a_log %>%
   bold_p(t = 0.05) %>%
   add_glance_table(include = deviance)
 
-gt::gtsave(as_gt(table2), file = "Tables/MixedLogisticRegressionAnalysis.png")
+gt::gtsave(as_gt(table2), file = "Tables/Tables/MixedLogisticRegressionAnalysis.png")

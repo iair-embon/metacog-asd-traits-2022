@@ -30,5 +30,5 @@ table1 <- a %>%
   bold_p(t = 0.05) %>%
   add_glance_table(include = c(r.squared, adj.r.squared))
 
-gt::gtsave(as_gt(table1), file = "Tables/AUROC2_linear_model.png")
+gt::gtsave(as_gt(table1), file = "Tables/Tables/AUROC2_linear_model.png")
 

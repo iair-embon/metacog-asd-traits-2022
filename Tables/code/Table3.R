@@ -18,13 +18,13 @@ table3 <- a %>%
                estimate_fun =  ~style_number (.x, digits = 3),
                label = list(
                  "(Intercept)" ~ "Intercept",
-                 "AQ_social.norm" ~ "Social Skill.norm",
-                 "AQ_AttentionSwitch.norm" ~ "Attention Switching.norm",
-                 "AQ_AttentionDetail.norm" ~ "Attention to Detail.norm",
-                 "AQ_communication.norm" ~ "Communication.norm",
-                 "AQ_imagination.norm" ~ "Imagination.norm",
+                 "AQ_social.std" ~ "Social Skill.std",
+                 "AQ_AttentionSwitch.std" ~ "Attention Switching.std",
+                 "AQ_AttentionDetail.std" ~ "Attention to Detail.std",
+                 "AQ_communication.std" ~ "Communication.std",
+                 "AQ_imagination.std" ~ "Imagination.std",
                  "gender" ~ "Gender[m]",
-                 "age.norm" ~ "Age.norm")
+                 "age.std" ~ "Age.std")
                ) %>%
   modify_header(label ~ "") %>%
   modify_column_unhide(column = std.error) %>%
@@ -32,5 +32,5 @@ table3 <- a %>%
   bold_p(t = 0.05) %>%
   add_glance_table(include = c(r.squared, adj.r.squared))
 
-gt::gtsave(as_gt(table3), file = "Tables/AQ_subscales_linear_model.png")
+gt::gtsave(as_gt(table3), file = "Tables/Tables/AQ_subscales_linear_model.png")
 
