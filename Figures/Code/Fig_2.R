@@ -115,12 +115,42 @@ pD <- ~{
   abline(0, 1, lwd = 2, lty = 3)
 }
 
+#### E: Logistic regression for the low metacognition hypothetical participant ####
+
+conf = seq(0,3,0.1)
+
+alfa.l <- 0.80
+beta.l <- 0.1
+
+p.l    <- 1 / (1+exp(-(alfa.l+beta.l*conf)))
+
+p_low <-~{
+  plot(conf+1,p.l, ylim = c(0.4,1), type="l",
+       lwd = 2,
+       xlab = "confidence",
+       ylab = "p(correct)")
+}
+#### F: Logistic regression for the high metacognition hypothetical participant ####
+
+alfa.h = 0
+beta.h = 1
+
+p.h    = 1 / (1+exp(-(alfa.h+beta.h*conf)))
+
+p_high <-~{
+  plot(conf+1,p.h, ylim = c(0.4,1), type="l",
+       lwd = 2,
+       xlab = "confidence",
+       ylab = "p(correct)")
+}
+
+
 #### Grid plot ####
 
-g <- plot_grid(pA, pC, pB, pD, 
-          labels = c('A', 'C', 'B', 'D'),
+g <- plot_grid(pA, pC, p_low, pB, pD, p_high, 
+          labels = c('A', 'C', 'E', 'B', 'D', 'F'),
           label_size = 24)
 
 
-ggsave("Figures/Figuras_en_R/Figures/2.png", g,
-       width = 6, height = 8, bg = "white")
+ggsave("Figures/Figures/2.png", g,
+       width = 10, height = 8, bg = "white")
