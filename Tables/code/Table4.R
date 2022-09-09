@@ -32,3 +32,23 @@ table4 <- a %>%
 
 gt::gtsave(as_gt(table4), file = "Tables/Tables/ConfidenceMean_AQ_linear_model.png")
 
+# data model 2
+filepath <- root$find_file("Data/Regression_Results/ConfidenceMean_AQ_linear_model_2.RData")
+load(file= filepath)
+
+table4_2 <- a2 %>%
+  tbl_regression(
+    intercept = T,
+    pvalue_fun = ~style_pvalue(.x, digits = 3),
+    estimate_fun =  ~style_number (.x, digits = 3),
+    label = list(
+      "(Intercept)" ~ "Intercept",
+      "AQ_test.std" ~ "AQ.std")
+  ) %>%
+  modify_header(label ~ "") %>%
+  modify_column_unhide(column = std.error) %>%
+  add_global_p() %>%
+  bold_p(t = 0.05) %>%
+  add_glance_table(include = c(r.squared, adj.r.squared))
+
+gt::gtsave(as_gt(table4_2), file = "Tables/Tables/ConfidenceMean_AQ_linear_model2.png")

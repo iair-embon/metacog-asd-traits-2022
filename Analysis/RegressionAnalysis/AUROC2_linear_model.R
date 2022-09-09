@@ -30,3 +30,10 @@ a=lm(mc ~ AQ_test.std +
 summary(a)
 
 save(a, file = "Data/Regression_Results/AUROC2_AQ_linear_model.RData")
+
+# model 2 - with out gender and age
+a2=lm(mc ~ AQ_test.std,
+     data = d) 
+summary(a2)
+
+save(a2, file = "Data/Regression_Results/AUROC2_AQ_linear_model_2.RData")

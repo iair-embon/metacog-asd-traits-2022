@@ -16,7 +16,9 @@ Figures
 - Figures: The figures of the study in .png format.
 
 JatosExperiment
-- exp_de_metacog_y_rasgos.jzip : This is the experiment code, ready to be imported into JATOS and run. 
+- exp_de_metacog_y_rasgos.jzip : This is the experiment code, ready to be imported into JATOS and run.
+- The experiment code is an adaptation of the "Dot Densitity Metacognition"" code that can be found in
+https://www.jatos.org/Example-Studies
 
 Tables
 - Code: The codes that reproduce the tables of the study.

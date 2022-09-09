@@ -35,3 +35,27 @@ table2 <- a_log %>%
   add_glance_table(include = deviance)
 
 gt::gtsave(as_gt(table2), file = "Tables/Tables/MixedLogisticRegressionAnalysis.png")
+
+# data model 2
+### load mixed logistic regression model 
+filepath <- root$find_file("Data/Regression_Results/MixedLogisticRegressionAnalysis_2.RData")
+load(file= filepath)
+
+table2_2 <- a_log2 %>%
+  tbl_regression(
+    intercept = T,
+    pvalue_fun = ~style_pvalue(.x, digits = 3),
+    estimate_fun =  ~style_ratio (.x, digits = 3),
+    tidy_fun = broom.mixed::tidy,
+    label = list(
+      "(Intercept)" ~ "Intercept",
+      "confidence_key.norm" ~ "Confidence.norm",
+      "confidence_key.norm:AQ_test.std" ~ "AQ.std:Confidence.norm",
+      "Participant.sd__(Intercept)" ~ "Subjects SE(Intercept)")) %>%
+  modify_header(label ~ "") %>%
+  modify_column_unhide(column = std.error) %>%
+  add_global_p() %>%
+  bold_p(t = 0.05) %>%
+  add_glance_table(include = deviance)
+
+gt::gtsave(as_gt(table2_2), file = "Tables/Tables/MixedLogisticRegressionAnalysis_2.png")

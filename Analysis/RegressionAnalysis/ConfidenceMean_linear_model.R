@@ -31,3 +31,11 @@ a=lm(ConfMean.std ~ AQ_test.std +
 summary(a)
 
 save(a, file = "Data/Regression_Results/ConfidenceMean_AQ_linear_model.RData")
+
+# model 2 - with out gender and age
+a2=lm(ConfMean.std ~ AQ_test.std,
+     data = d) 
+summary(a2)
+
+save(a2, file = "Data/Regression_Results/ConfidenceMean_AQ_linear_model_2.RData")
+

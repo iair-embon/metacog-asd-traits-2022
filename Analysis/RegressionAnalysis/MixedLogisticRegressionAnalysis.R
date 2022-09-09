@@ -31,4 +31,18 @@ a_log <- glmer(discrimination_is_correct ~ confidence_key.norm +
                control=glmerControl(optimizer="bobyqa",
                                     optCtrl=list(maxfun=2e5)))
 
+summary(a_log)
+
 save(a_log, file = "Data/Regression_Results/MixedLogisticRegressionAnalysis.RData")
+
+# model 2 - with out gender and age
+a_log2 <- glmer(discrimination_is_correct ~ confidence_key.norm +
+                 confidence_key.norm:AQ_test.std +
+                 (1|Participant),
+               data = df_total,
+               family = binomial,
+               control=glmerControl(optimizer="bobyqa",
+                                    optCtrl=list(maxfun=2e5)))
+summary(a_log2)
+
+save(a_log2, file = "Data/Regression_Results/MixedLogisticRegressionAnalysis_2.RData")

@@ -25,7 +25,7 @@ d$AQ_AttentionDetail.std <- (d$AQ_AttentionDetail - mean(d$AQ_AttentionDetail))/
 d$AQ_communication.std <- (d$AQ_communication - mean(d$AQ_communication))/ sd(d$AQ_communication)
 d$AQ_imagination.std <- (d$AQ_imagination - mean(d$AQ_imagination))/ sd(d$AQ_imagination)
 
-# corro el modelo
+# model
 a=lm(mc ~ AQ_social.std+
        AQ_AttentionSwitch.std+
        AQ_AttentionDetail.std+
@@ -37,3 +37,14 @@ a=lm(mc ~ AQ_social.std+
 summary(a)
 
 save(a, file = "Data/Regression_Results/AQ_subscales_linear_model.RData")
+
+# model 2 - with out gender and age
+a2=lm(mc ~ AQ_social.std+
+       AQ_AttentionSwitch.std+
+       AQ_AttentionDetail.std+
+       AQ_communication.std+
+       AQ_imagination.std,
+     data = d) 
+summary(a2)
+
+save(a2, file = "Data/Regression_Results/AQ_subscales_linear_model_2.RData")
