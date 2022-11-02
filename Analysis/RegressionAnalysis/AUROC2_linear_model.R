@@ -11,7 +11,7 @@ filepath <- root$find_file("Data/df_total_filtered.Rda")
 load(file= filepath)
 
 source(root$find_file("Analysis/AuxiliaryFunctions/DataFrame_subset.R"))
-d <- DataFrame_subset(df_total)
+d <- DataFrame_subset(df_total_filtered)
 
 ### preprocessing
 d$AQ_test.std <- (d$AQ_test - mean(d$AQ_test))/ sd(d$AQ_test)
