@@ -12,7 +12,7 @@ filepath <- root$find_file("Data/df_total_filtered.Rda")
 load(file= filepath)
 
 # preprocessing
-df_total_filtered$gender <- ifelse(df_total_filtered$gender == "Masculino",1,0)
+df_total_filtered$gender <- ifelse(df_total_filtered$gender == "Male",1,0)
 df_total_filtered$discrimination_is_correct <- ifelse(df_total_filtered$discrimination_is_correct == TRUE, 1, 0)
 df_total_filtered$Participant <- factor(df_total_filtered$Participant)
 df_total_filtered$confidence_key.norm <- (df_total_filtered$confidence_key - 1) / 3 

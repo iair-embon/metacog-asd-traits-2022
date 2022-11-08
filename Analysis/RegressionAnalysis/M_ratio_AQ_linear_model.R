@@ -16,12 +16,12 @@ d <- DataFrame_subset(df_total_filtered)
 ### preprocessing
 d$AQ_test.std <- (d$AQ_test - mean(d$AQ_test))/ sd(d$AQ_test)
 d$age.std <- (d$age - mean(d$age))/ sd(d$age)
-d[d == "Masculino"] <- "1"
-d[d == "Femenino"] <- "0"
+d[d == "Male"] <- "1"
+d[d == "Female"] <- "0"
 d$gender <- as.integer(d$gender)
 
 # adding the meta_d column
-M_ratio <- read.table("./Analysis/Meta_d_analysis/M_ratio.txt")
+M_ratio <- read.table("./Analysis/Meta_d_analysis/M_ratio_filtered.txt")
 
 d$M_ratio <- M_ratio$V1
 
@@ -36,9 +36,28 @@ summary(a)
 
 save(a, file = "Data/Regression_Results/M_ratio_AQ_linear_model.RData")
 
+# power analysis
+library(pwr)
+
+power <- pwr.f2.test(u = 5, # number of iv
+                     v = a$df.residual, # degree of freedom
+                     f2 =  0.001746/(1- 0.001746), # effect size
+                     sig.level = 0.05) # alpha
+
+print(paste("power model 1:", power$power))
+
+
 # model 2 - with out gender and age
 a2=lm(M_ratio ~ AQ_test.std,
      data = d) 
 summary(a2)
 
 save(a2, file = "Data/Regression_Results/M_ratio_AQ_linear_model_2.RData")
+
+# power analysis
+power <- pwr.f2.test(u = 1, # number of iv
+                     v = a2$df.residual, # degree of freedom
+                     f2 =  0.0007781/(1- 0.0007781), # effect size
+                     sig.level = 0.05) # alpha
+
+print(paste("power model 2:", power$power))
