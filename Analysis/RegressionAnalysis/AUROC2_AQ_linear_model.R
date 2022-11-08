@@ -41,11 +41,19 @@ power <- pwr.f2.test(u = 5, # number of iv
 
 print(paste("power model 1:", power$power))
 
+# Adjust p-values for multiple comparisons with fdr method
+library(broom)
+library(tidyverse)
+
+regression.results = summary(a)$coefficients
+p_values <-unname(regression.results[,4])
+p.adjust(p_values, method = "fdr")
 
 # model 2 - with out gender and age
 a2=lm(mc ~ AQ_test.std,
      data = d) 
 summary(a2)
+
 
 save(a2, file = "Data/Regression_Results/AUROC2_AQ_linear_model_2.RData")
 
@@ -56,3 +64,8 @@ power <- pwr.f2.test(u = 1, # number of iv
                      sig.level = 0.05) # alpha
 
 print(paste("power model 2:", power$power))
+
+# Adjust p-values for multiple comparisons with fdr method
+regression.results = summary(a2)$coefficients
+p_values <-unname(regression.results[,4])
+p.adjust(p_values, method = "fdr")
