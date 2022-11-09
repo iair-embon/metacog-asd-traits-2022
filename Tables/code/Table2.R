@@ -5,6 +5,7 @@
 require(gtsummary)
 require(dplyr)
 require(broom.mixed)
+library(webshot2)
 
 # data
 ### load mixed logistic regression model 
@@ -30,8 +31,8 @@ table2 <- a_log %>%
       "Participant.sd__(Intercept)" ~ "Subjects SE(Intercept)")) %>%
   modify_header(label ~ "") %>%
   modify_column_unhide(column = std.error) %>%
-  add_global_p() %>%
-  bold_p(t = 0.05) %>%
+  add_q() %>%
+  bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = deviance)
 
 gt::gtsave(as_gt(table2), file = "Tables/Tables/MixedLogisticRegressionAnalysis.png")
@@ -55,7 +56,8 @@ table2_2 <- a_log2 %>%
   modify_header(label ~ "") %>%
   modify_column_unhide(column = std.error) %>%
   add_global_p() %>%
-  bold_p(t = 0.05) %>%
+  add_q() %>%
+  bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = deviance)
 
 gt::gtsave(as_gt(table2_2), file = "Tables/Tables/MixedLogisticRegressionAnalysis_2.png")

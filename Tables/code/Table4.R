@@ -4,6 +4,7 @@
 
 require(gtsummary)
 require(dplyr)
+library(webshot2)
 
 # data
 root <- rprojroot::is_rstudio_project
@@ -27,7 +28,8 @@ table4 <- a %>%
   modify_header(label ~ "") %>%
   modify_column_unhide(column = std.error) %>%
   add_global_p() %>%
-  bold_p(t = 0.05) %>%
+  add_q() %>%
+  bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = c(r.squared, adj.r.squared))
 
 gt::gtsave(as_gt(table4), file = "Tables/Tables/ConfidenceMean_AQ_linear_model.png")
@@ -48,7 +50,8 @@ table4_2 <- a2 %>%
   modify_header(label ~ "") %>%
   modify_column_unhide(column = std.error) %>%
   add_global_p() %>%
-  bold_p(t = 0.05) %>%
+  add_q() %>%
+  bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = c(r.squared, adj.r.squared))
 
 gt::gtsave(as_gt(table4_2), file = "Tables/Tables/ConfidenceMean_AQ_linear_model2.png")

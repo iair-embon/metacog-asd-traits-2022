@@ -4,6 +4,7 @@
 
 require(gtsummary)
 require(dplyr)
+library(webshot2)
 
 # data
 root <- rprojroot::is_rstudio_project
@@ -27,10 +28,11 @@ table1 <- a %>%
   modify_header(label ~ "") %>%
   modify_column_unhide(column = std.error) %>%
   add_global_p() %>%
-  bold_p(t = 0.05) %>%
+  add_q() %>%
+  bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = c(r.squared, adj.r.squared))
 
-gt::gtsave(as_gt(table1), file = "Tables/Tables/AUROC2_linear_model.png")
+gt::gtsave(as_gt(table1), file = "Tables/Tables/AUROC2_AQ_linear_model.png")
 
 ## data model 2
 filepath <- root$find_file("Data/Regression_Results/AUROC2_AQ_linear_model_2.RData")
@@ -48,7 +50,8 @@ table1_2 <- a2 %>%
   modify_header(label ~ "") %>%
   modify_column_unhide(column = std.error) %>%
   add_global_p() %>%
-  bold_p(t = 0.05) %>%
+  add_q() %>%
+  bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = c(r.squared, adj.r.squared))
 
-gt::gtsave(as_gt(table1_2), file = "Tables/Tables/AUROC2_linear_model_2.png")
+gt::gtsave(as_gt(table1_2), file = "Tables/Tables/AUROC2_AQ_linear_model_2.png")
