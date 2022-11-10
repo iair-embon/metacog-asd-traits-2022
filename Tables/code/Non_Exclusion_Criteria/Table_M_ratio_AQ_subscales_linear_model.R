@@ -1,6 +1,6 @@
-######################################################
-### Linear Regression Analysis AQ Subscales Meta d ### 
-######################################################
+#######################################################
+### Linear Regression Analysis AQ Subscales M ratio ### 
+#######################################################
 
 require(gtsummary)
 require(dplyr)
@@ -9,7 +9,7 @@ library(webshot2)
 # data
 root <- rprojroot::is_rstudio_project
 basename(getwd())               
-filepath <- root$find_file("Data/Regression_Results/Meta_d_AQ_subscales_linear_model.RData")
+filepath <- root$find_file("Data/Regression_Results/Non_Exclusion_Criteria/M_ratio_AQ_subscales_linear_model.RData")
 load(file= filepath)
 
 table3 <- a %>%
@@ -34,10 +34,10 @@ table3 <- a %>%
   bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = c(r.squared, adj.r.squared))
 
-gt::gtsave(as_gt(table3), file = "Tables/Tables/Meta_d_AQ_subscales_linear_model.png")
+gt::gtsave(as_gt(table3), file = "Tables/Tables/Non_Exclusion_Criteria/M_ratio_AQ_subscales_linear_model.png")
 
 # data model 2
-filepath <- root$find_file("Data/Regression_Results/Meta_d_AQ_subscales_linear_model_2.RData")
+filepath <- root$find_file("Data/Regression_Results/Non_Exclusion_Criteria/M_ratio_AQ_subscales_linear_model_2.RData")
 load(file= filepath)
 
 table3_2 <- a2 %>%
@@ -60,6 +60,6 @@ table3_2 <- a2 %>%
   bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = c(r.squared, adj.r.squared))
 
-gt::gtsave(as_gt(table3_2), file = "Tables/Tables/Meta_d_AQ_subscales_linear_model_2.png")
+gt::gtsave(as_gt(table3_2), file = "Tables/Tables/Non_Exclusion_Criteria/M_ratio_AQ_subscales_linear_model_2.png")
 
 

@@ -15,6 +15,5 @@ DataFrame_subset <- function(df_total){
               TimeDiscTrial,
               TimeConfTrial)) %>%
     distinct(Participant,.keep_all = TRUE)
-
   return(d)
 }

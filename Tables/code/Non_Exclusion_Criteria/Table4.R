@@ -1,6 +1,6 @@
-##########################################
-### Linear Regression Analysis M ratio ### 
-##########################################
+###################################
+### Regression model confidence ### TAB 4
+###################################
 
 require(gtsummary)
 require(dplyr)
@@ -9,10 +9,10 @@ library(webshot2)
 # data
 root <- rprojroot::is_rstudio_project
 basename(getwd())               
-filepath <- root$find_file("Data/Regression_Results/M_ratio_AQ_linear_model.RData")
+filepath <- root$find_file("Data/Regression_Results/Non_Exclusion_Criteria/ConfidenceMean_AQ_linear_model.RData")
 load(file= filepath)
 
-table1 <- a %>%
+table4 <- a %>%
   tbl_regression(
                intercept = T,
                pvalue_fun = ~style_pvalue(.x, digits = 3),
@@ -32,13 +32,13 @@ table1 <- a %>%
   bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = c(r.squared, adj.r.squared))
 
-gt::gtsave(as_gt(table1), file = "Tables/Tables/M_ratio_AQ_linear_model.png")
+gt::gtsave(as_gt(table4), file = "Tables/Tables/Non_Exclusion_Criteria/ConfidenceMean_AQ_linear_model.png")
 
-## data model 2
-filepath <- root$find_file("Data/Regression_Results/M_ratio_AQ_linear_model_2.RData")
+# data model 2
+filepath <- root$find_file("Data/Regression_Results/Non_Exclusion_Criteria/ConfidenceMean_AQ_linear_model_2.RData")
 load(file= filepath)
 
-table1_2 <- a2 %>%
+table4_2 <- a2 %>%
   tbl_regression(
     intercept = T,
     pvalue_fun = ~style_pvalue(.x, digits = 3),
@@ -54,4 +54,4 @@ table1_2 <- a2 %>%
   bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = c(r.squared, adj.r.squared))
 
-gt::gtsave(as_gt(table1_2), file = "Tables/Tables/M_ratio_AQ_linear_model_2.png")
+gt::gtsave(as_gt(table4_2), file = "Tables/Tables/Non_Exclusion_Criteria/ConfidenceMean_AQ_linear_model2.png")

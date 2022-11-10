@@ -9,7 +9,7 @@ library(webshot2)
 # data
 root <- rprojroot::is_rstudio_project
 basename(getwd())               
-filepath <- root$find_file("Data/Regression_Results/All_participants_Non_Exclusion/ConfidenceMean_AQ_linear_model.RData")
+filepath <- root$find_file("Data/Regression_Results/ConfidenceMean_AQ_linear_model.RData")
 load(file= filepath)
 
 table4 <- a %>%
@@ -32,10 +32,10 @@ table4 <- a %>%
   bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = c(r.squared, adj.r.squared))
 
-gt::gtsave(as_gt(table4), file = "Tables/Tables/All_participants_Non_Exclusion/ConfidenceMean_AQ_linear_model.png")
+gt::gtsave(as_gt(table4), file = "Tables/Tables/ConfidenceMean_AQ_linear_model.png")
 
 # data model 2
-filepath <- root$find_file("Data/Regression_Results/All_participants_Non_Exclusion/ConfidenceMean_AQ_linear_model_2.RData")
+filepath <- root$find_file("Data/Regression_Results/ConfidenceMean_AQ_linear_model_2.RData")
 load(file= filepath)
 
 table4_2 <- a2 %>%
@@ -54,4 +54,4 @@ table4_2 <- a2 %>%
   bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = c(r.squared, adj.r.squared))
 
-gt::gtsave(as_gt(table4_2), file = "Tables/Tables/All_participants_Non_Exclusion/ConfidenceMean_AQ_linear_model2.png")
+gt::gtsave(as_gt(table4_2), file = "Tables/Tables/ConfidenceMean_AQ_linear_model2.png")

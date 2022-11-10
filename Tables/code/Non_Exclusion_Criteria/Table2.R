@@ -11,7 +11,7 @@ library(webshot2)
 ### load mixed logistic regression model 
 root <- rprojroot::is_rstudio_project
 basename(getwd())               
-filepath <- root$find_file("Data/Regression_Results/MixedLogisticRegressionAnalysis.RData")
+filepath <- root$find_file("Data/Regression_Results/Non_Exclusion_Criteria/MixedLogisticRegressionAnalysis.RData")
 load(file= filepath)
 
 table2 <- a_log %>%
@@ -35,11 +35,11 @@ table2 <- a_log %>%
   bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = deviance)
 
-gt::gtsave(as_gt(table2), file = "Tables/Tables/MixedLogisticRegressionAnalysis.png")
+gt::gtsave(as_gt(table2), file = "Tables/Tables/Non_Exclusion_Criteria/MixedLogisticRegressionAnalysis.png")
 
 # data model 2
 ### load mixed logistic regression model 
-filepath <- root$find_file("Data/Regression_Results/MixedLogisticRegressionAnalysis_2.RData")
+filepath <- root$find_file("Data/Regression_Results/Non_Exclusion_Criteria/MixedLogisticRegressionAnalysis_2.RData")
 load(file= filepath)
 
 table2_2 <- a_log2 %>%
@@ -60,4 +60,4 @@ table2_2 <- a_log2 %>%
   bold_p(t = 0.05, q = TRUE) %>%
   add_glance_table(include = deviance)
 
-gt::gtsave(as_gt(table2_2), file = "Tables/Tables/MixedLogisticRegressionAnalysis_2.png")
+gt::gtsave(as_gt(table2_2), file = "Tables/Tables/Non_Exclusion_Criteria/MixedLogisticRegressionAnalysis_2.png")
