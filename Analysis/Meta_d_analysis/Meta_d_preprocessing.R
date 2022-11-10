@@ -8,10 +8,6 @@ root <- rprojroot::is_rstudio_project
 basename(getwd())
 load("./Data/df_total.Rda")
 
-## filter by gender
-df_total <- df_total %>%
-  filter(gender == "Femenino" | gender == "Masculino")
-
 # stimuli presented column
 df_total$left_right_stimuli <- ifelse(df_total$dots_num_left > df_total$dots_num_right,
                              "left","right")
