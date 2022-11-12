@@ -54,20 +54,3 @@ library(tidyverse)
 regression.results = summary(a_log)$coefficients
 p_values <-unname(regression.results[,4])
 p.adjust(p_values, method = "fdr")
-
-# model 2 - with out gender and age
-a_log2 <- glmer(discrimination_is_correct ~ confidence_key.norm +
-                 confidence_key.norm:AQ_test.std +
-                 (1|Participant),
-               data = df_total,
-               family = binomial,
-               control=glmerControl(optimizer="bobyqa",
-                                    optCtrl=list(maxfun=2e5)))
-summary(a_log2)
-
-save(a_log2, file = "Data/Regression_Results/Non_Exclusion_Criteria/MixedLogisticRegressionAnalysis_2.RData")
-
-# Adjust p-values for multiple comparisons with fdr method
-regression.results = summary(a_log2)$coefficients
-p_values <-unname(regression.results[,4])
-p.adjust(p_values, method = "fdr")

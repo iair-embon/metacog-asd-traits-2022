@@ -39,7 +39,7 @@ save(a, file = "Data/Regression_Results/Meta_d_AQ_linear_model.RData")
 # power analysis
 library(pwr)
 
-power <- pwr.f2.test(u = 5, # number of iv
+power <- pwr.f2.test(u = 3, # number of iv
                      v = a$df.residual, # degree of freedom
                      f2 = 0.002147/(1-0.002147), # effect size
                      sig.level = 0.05) # alpha

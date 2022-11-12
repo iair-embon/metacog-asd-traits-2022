@@ -88,23 +88,3 @@ library(tidyverse)
 regression.results = summary(a)$coefficients
 p_values <-unname(regression.results[,4])
 p.adjust(p_values, method = "fdr")
-
-# model 2 - with out gender and age
-a2=lm(ConfMean.std ~ AQ_test.std,
-     data = d) 
-summary(a2)
-
-save(a2, file = "Data/Regression_Results/Non_Exclusion_Criteria/ConfidenceMean_AQ_linear_model_2.RData")
-
-# power analysis
-power <- pwr.f2.test(u = 1, # number of iv
-                     v = a2$df.residual, # degree of freedom
-                     f2 =  0.001162/(1-0.001162), # effect size
-                     sig.level = 0.05) # alpha
-
-print(paste("power model 2:", power$power))
-
-# Adjust p-values for multiple comparisons with fdr method
-regression.results = summary(a2)$coefficients
-p_values <-unname(regression.results[,4])
-p.adjust(p_values, method = "fdr")
