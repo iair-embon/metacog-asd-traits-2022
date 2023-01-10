@@ -64,6 +64,13 @@ summary(a_log2)
 
 save(a_log2, file = "Data/Regression_Results/MixedLogisticRegressionAnalysis_2.RData")
 
+# power analysis
+p2 <-powerSim(a_log2, test = fixed("confidence_key.norm:AQ_test.std") ,nsim=5000)
+
+print(p2)
+
+save(p2, file = "Data/Regression_Results/Power2_MixedLogisticRegressionAnalysis.RData")
+
 # Adjust p-values for multiple comparisons with fdr method
 regression.results = summary(a_log2)$coefficients
 p_values <-unname(regression.results[,4])
