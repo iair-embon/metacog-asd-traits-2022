@@ -35,6 +35,15 @@ summary(a_log)
 
 save(a_log, file = "Data/Regression_Results/MixedLogisticRegressionAnalysis.RData")
 
+# power analysis
+library(simr)
+
+p1 <-powerSim(a_log, test = fixed("confidence_key.norm:AQ_test.std") ,nsim=5000)
+
+print(p1)
+
+save(p1, file = "Data/Regression_Results/Power1_MixedLogisticRegressionAnalysis.RData")
+
 # Adjust p-values for multiple comparisons with fdr method
 library(broom)
 library(tidyverse)
